@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', function(){
     tableBody: document.querySelector('.table-body'),
     tableYears: document.querySelector('.years'),
     funForEach: document.querySelector('.foreach'),
-    funFilter: document.querySelector('.filter'),
     filterDivs: document.querySelectorAll('.filter div:nth-child(odd)'),
-    funMap: document.querySelector('.map'),
-    funSort: document.querySelector('.sort'),
-    funReduce: document.querySelector('.reduce')
+    funMapDivs: document.querySelectorAll('.map div:nth-child(odd)'),
+    funSortDivs: document.querySelectorAll('.sort div:nth-child(odd)'),
+    funReduceDivs: document.querySelectorAll('.reduce div:nth-child(odd)'),
+    funCombine: document.querySelector('.combine')
   });
 });
