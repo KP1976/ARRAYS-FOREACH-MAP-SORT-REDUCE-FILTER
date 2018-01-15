@@ -1,0 +1,78 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+html, body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+
+p, span, div {
+  font-size: 1.6rem;
+  padding: 1rem;
+}
+
+hr {
+  border: none;
+  border-top: 1px dashed rgba(0, 0, 0, .2);
+  height: .3rem;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 80vw;
+}
+
+.title {
+  font-size: 4rem;
+}
+
+.subtitle {
+  font-size: 3rem;
+}
+
+.table {
+  border: 1px solid rgba(0, 0, 0, .3);
+  font-size: 1.6rem;
+  margin: 2rem 0;
+  padding: 1rem;
+  width: 100%;
+}
+
+th {
+  font-weight: bold;
+  height: 3rem;
+}
+
+.table-body th {
+  font-weight: normal;
+}
+
+.years {
+  border: 1px solid rgba(0, 0, 0, .3);
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  min-height: 2rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+.array-function-name {
+  font-size: 2.5rem;
+}
+
+.array-function-wrapper {
+  border: 1px solid rgba(0, 0, 0, .3);
+  margin: 2rem 0;
+  min-height: 2rem;
+  padding: 1rem;
+  width: 100%;
+}
