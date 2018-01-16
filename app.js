@@ -1,162 +1,153 @@
-const Tablica = (function() {
-  function addRows(tab) {
-     tab.firmy.forEach(firma => {
-      const row = document.createElement('tr');
+const Vars = (function() {
+  function addparagraphs(vars) {
+     vars.users.forEach(user => {
+      const paragraph = document.createElement('tr');
       
-      row.className = 'table-row';
-      row.innerHTML = `
-        <th>${firma.nazwa}</th>
-        <th>${firma.kategoria}</th>
-        <th>${firma.rok_zalozenia}</th>
-        <th>${firma.koniec_dzialalnosci}</th>
+      paragraph.className = 'table-paragraph';
+      paragraph.innerHTML = `
+        <th>${user.name}</th>
+				<th>${user.age}</th>
+        <th>${user.category}</th>
+        <th>${user.start}</th>
+        <th>${user.end}</th>
       `;
-      tab.tableBody.appendChild(row);    
+      vars.tableBody.appendChild(paragraph);    
     });
 
-    tab.tableYears.innerHTML = `<strong>Lata:</strong> ${tab.lata}`;    
+    vars.tableYears.innerHTML = `<strong>Liczby:</strong> ${vars.numbers}`;    
   }
 
-  function ForEach(tab) {
-    tab.firmy.forEach((firma, index) => {
-      const row = document.createElement('p');
+  function ForEach(vars) {
+    vars.users.forEach((user, index) => {
+      const paragraph = document.createElement('p');
 
-      row.innerHTML = `Indeks w tablicy: <strong>${index}</strong>&emsp;Nazwa firmy: <strong>${firma.nazwa}</strong>`;
-      tab.funForEach.appendChild(row); 
+      paragraph.innerHTML = `Indeks: <strong>${index}</strong>&emsp;Imię: <strong>${user.name}</strong>`;
+      vars.funForEach.appendChild(paragraph); 
     });
   }
 
-  function Filtering(tab) {
-    // Filtrowanie tablicy firmy gdzie kategoria jest Finanse
-    const firmyFinansowe = tab.firmy.filter(firma => {
-      if(firma.kategoria === 'Finanse') {
-        const row = document.createElement('p');
+  function Filtering(vars) {
+    // Filtparagraphanie tablicy users gdzie kategoria to Finanse
+    const financialUsers = vars.users.filter(user => {
+      if(user.category === 'Finanse') {
+        const paragraph = document.createElement('p');
   
-        row.innerHTML = `
-          Nazwa firmy:<strong> ${firma.nazwa}</strong>&emsp;Kategoria:<strong>${firma.kategoria}</strong>
+        paragraph.innerHTML = `
+          Imię:<strong> ${user.name}</strong>&emsp;Kategoria:<strong> ${user.category}</strong>
         `;
-        tab.filterDivs[0].appendChild(row); 
-
-        // return true;
+        vars.filterDivs[0].appendChild(paragraph); 
       }
     });
 
-    // Filtrowanie tablicy firmy, gdzie firma rozpoczęła działalność od 1980 rok
-    const lata80 = tab.firmy.filter(firma => {
-      if(firma.rok_zalozenia >= 1980 && firma.rok_zalozenia < 1990) {
-        const row = document.createElement('p');
+    // Filtparagraphanie tablicy users, gdzie użytkownik  pracował w latach 80-tych
+    const eighties = vars.users.filter(user => {
+      if(user.start >= 1980 && user.end < 1990) {
+        const paragraph = document.createElement('p');
   
-        row.innerHTML = `
-          Nazwa firmy:<strong> ${firma.nazwa}</strong>&emsp;Kategoria:<strong>${firma.rok_zalozenia}</strong>
-        `;
-        tab.filterDivs[1].appendChild(row); 
-
-        // return true;
+        paragraph.innerHTML = `
+        Imię:<strong> ${user.name}</strong>&emsp;Początek pracy:<strong> ${user.start}</strong>&emsp;Koniec pracy:<strong> ${user.end}</strong>`;
+        vars.filterDivs[1].appendChild(paragraph); 
       }
     });
 
-    // Filtrowanie tablicy lata - wypisuje elementy tablicy równe lub większe niż 18
-    const czyJestDorosly = tab.lata.filter(rok => {
-      if(rok >= 18) {
-        const row = document.createElement('span');
+    // Filtparagraphanie tablicy numbers – wypisuje elementy tablicy równe lub większe niż 18
+    const overEighteen = vars.numbers.filter(num => {
+      if(num >= 18) {
+        const span = document.createElement('span');
   
-        row.innerHTML = `${rok} `;
-        tab.filterDivs[2].appendChild(row); 
-
-        // return true;
+        span.innerHTML = `${num} `;
+        vars.filterDivs[2].appendChild(span); 
       }
     });
 
-    const lastedTenYears = tab.firmy.filter((firma, index) => {
-      if((firma.koniec_dzialalnosci - firma.rok_zalozenia) >= 10) {
-        const row = document.createElement('p');
-  
-        row.innerHTML = `
-        Indeks w tablicy: <strong>${index}</strong>&emsp;Nazwa firmy:<strong> ${firma.nazwa}</strong>
-        &emsp;Ile lat: <strong>${firma.koniec_dzialalnosci - firma.rok_zalozenia}</strong>`;
-        tab.filterDivs[3].appendChild(row); 
-
-        // return true;
+		// Filtparagraphanie tablicy users, gdzie użytkownik pracował dłużej niż 10 lat
+    const lastedTenYears = vars.users.filter((user, index) => {
+      if((user.end - user.start) >= 10) {
+        const paragraph = document.createElement('p');
+				
+        paragraph.innerHTML = `
+        Indeks: <strong>${index}</strong>&emsp;Imię: <strong> ${user.name}</strong>
+        &emsp;Ile lat: <strong>${user.end - user.start}</strong>`;
+        vars.filterDivs[3].appendChild(paragraph); 
       }
     });
   }
 
-  function Mapping(tab) {
-    // Tworzenie tablicy z indeksem i nazwami firm wraz z latami działalności
-    const nazwyFirm = tab.firmy.map((firma, index) => {
-      const row = document.createElement('p');
+  function Mapping(vars) {
+    // Tworzenie tablicy z indeksem i imieniem użytkownika wraz z latami działalności
+    const userNames = vars.users.map((user, index) => {
+      const paragraph = document.createElement('p');
   
-      row.innerHTML = `
-      Indeks: <strong>${index}</strong>&emsp;Nazwa firmy:<strong> ${firma.nazwa}</strong>
-      &emsp;Lata działalności:<strong> [${firma.rok_zalozenia} – ${firma.koniec_dzialalnosci}]</strong>`;
-      tab.funMapDivs[0].appendChild(row);
-
-      // return firma.nazwa;
+      paragraph.innerHTML = `
+      Indeks: <strong>${index}</strong>&emsp;Imię<strong> ${user.name}</strong>
+      &emsp;Lata działalności: <strong> [${user.start} – ${user.end}]</strong>`;
+      vars.funMapDivs[0].appendChild(paragraph);
     });
 
-    // Podniesienie do kwadratu elementów tablicy lata
-    const row = document.createElement('p');
-    const agesSquare = tab.lata.map(rok => rok * 2); 
+    // Mnożenie elementów tablicy numbers razy 2
+    const paragraph = document.createElement('p');
+    const agesSquare = vars.numbers.map(num => num * 2); 
     
-    tab.funMapDivs[1].appendChild(row);
-    row.textContent = agesSquare;
+    vars.funMapDivs[1].appendChild(paragraph);
+    paragraph.textContent = agesSquare;
   }
 
-  function Sorting(tab) {
-    // Sortowanie tablicy firmy od tej, która powstała najwcześniej
-    const posortowaneFirmy = tab.firmy.sort((firma1, firma2) =>
-      (firma1.rok_zalozenia > firma2.rok_zalozenia ? 1 : -1))
-    .forEach(firma => {
-      const row = document.createElement('p');
+  function Sorting(vars) {
+    // Sortowanie tablicy users według rozpoczęcia działalności
+    const sortedUsers = vars.users.sort((user1, user2) =>
+      (user1.start > user2.start ? 1 : -1))
+			.forEach(user => {
+      const paragraph = document.createElement('p');
 
-      row.innerHTML = `Nazwa firmy: <strong>${firma.nazwa}</strong>&emsp;Rok założenia: <strong>${firma.rok_zalozenia}</strong>`;
-      tab.funSortDivs[0].appendChild(row);
+      paragraph.innerHTML = `Imię: <strong>${user.name}</strong>&emsp;Rok założenia: <strong>${user.start}</strong>`;
+      vars.funSortDivs[0].appendChild(paragraph);
     });
 
-    // Sortowanie tablicy lata
-    const row = document.createElement('p');
-    const posortowaneLata = tab.lata.sort((a, b) => a - b);  // a - b sortowanie rosnąco, b - a sortowanie malejąco
+    // Sortowanie tablicy numbers
+    const paragraph = document.createElement('p');
+    const sortedNumbers = vars.numbers.sort((a, b) => a - b);  // a - b sortowanie rosnąco, b - a sortowanie malejąco
 
-    tab.funSortDivs[1].appendChild(row);
-    row.textContent = posortowaneLata;
+    vars.funSortDivs[1].appendChild(paragraph);
+    paragraph.textContent = sortedNumbers;
   }
 
-  function Reducing(tab) {
-    // Suma wszystkich elementów tablicy lata
-    const row = document.createElement('p');
-    const sumaLat = tab.lata.reduce((suma, rok) => suma + rok, 0); // drugi parametr jest dodawany do sumy
-    tab.funReduceDivs[0].appendChild(row);
-    row.textContent = sumaLat;
+  function Reducing(vars) {
+    // Suma wszystkich elementów tablicy numbers
+    const paragraph = document.createElement('p');
+    const sumOfNumbers = vars.numbers.reduce((sum, num) => sum + num, 0); // drugi parametr jest dodawany do sumy
+    vars.funReduceDivs[0].appendChild(paragraph);
+    paragraph.textContent = sumOfNumbers;
 
-    // Suma wszystkich lat ze wszystkich firm z tablicy firmy
-    const wszystkieLata = tab.firmy.reduce((suma, firma) => 
-    suma + (firma.koniec_dzialalnosci - firma.rok_zalozenia), 0);
+    // Suma wszystkich lat przepracowanych przez wszystkich użytkowników z tablicy users
+    const allYears = vars.users.reduce((sum, user) => 
+    sum + (user.end - user.start), 0);
     
-    const row2 = document.createElement('p');
-    tab.funReduceDivs[1].appendChild(row2);
-    row2.textContent = wszystkieLata;
+    const paragraph2 = document.createElement('p');
+    vars.funReduceDivs[1].appendChild(paragraph2);
+    paragraph2.textContent = allYears;
   }
 
-  function Combine(tab) {
-    // Na tablicy lata, elementy mnożone przez 2, filtrowane tylko te powyżej lub równe 40, posortowane rosnąco i zsumowane
-    const row = document.createElement('p');
-    const kombinacja = tab.lata
-    .map(rok => rok * 2)
-    .filter(rok => rok >= 40)
+  function Combine(vars) {
+    // Na tablicy numbers, elementy mnożone przez 2, filtrowane tylko te powyżej lub równe 40, posortowane rosnąco i zsumowane
+    const paragraph = document.createElement('p');
+    const combine = vars.numbers
+    .map(num => num * 2)
+    .filter(num => num >= 40)
     .sort((a, b) => a - b)
-    .reduce((suma, rok) => suma + rok, 0);
+    .reduce((sum, num) => sum + num, 0);
     
-    tab.funCombine.appendChild(row);
-    row.textContent = kombinacja;
+    vars.funCombine.appendChild(paragraph);
+    paragraph.textContent = combine;
   }
 
-  function init(config) {
-    addRows(config);
-    ForEach(config);
-    Filtering(config);
-    Mapping(config);
-    Sorting(config);
-    Reducing(config);
-    Combine(config);
+  function init(vars) {
+    addparagraphs(vars);
+    ForEach(vars);
+    Filtering(vars);
+    Mapping(vars);
+    Sorting(vars);
+    Reducing(vars);
+    Combine(vars);
   }
 
   return {
